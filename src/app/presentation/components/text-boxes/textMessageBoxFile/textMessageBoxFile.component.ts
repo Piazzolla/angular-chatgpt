@@ -20,14 +20,13 @@ export interface TextMessageEvent {
 })
 export class TextMessageBoxFileComponent {
   @Input() public placeholder:string = '';
-  @Input() public disableCorrections:boolean = false;
   @Output() public onMessage = new EventEmitter<TextMessageEvent>();
 
 
   public fb = inject(FormBuilder);
   public form = this.fb.group({
     prompt: [],
-    file: [null, Validators.required]
+    file: [null]
   });
 
   public file: File | undefined;
