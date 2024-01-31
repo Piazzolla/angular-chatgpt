@@ -1,7 +1,7 @@
 import type { OrthographyResponse } from "@interfaces/orthography.response";
 import { environment } from "environments/environment.development";
 
-export const orthographyUseCAse =async (prompt:string) => {
+export const orthographyUseCAse = async (prompt:string) => {
 
   try {
     const resp = await fetch(`${environment.backendApi}/orthography-check`, {

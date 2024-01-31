@@ -1,4 +1,6 @@
  import { Injectable } from '@angular/core';
+import { prosConsUseCase } from '@use-cases/pros-cons/pros-cons.use-case';
+import { prosConsStreamUseCase } from '@use-cases/pros-cons/pros-cons-stream.use-case';
 import { orthographyUseCAse } from 'app/core';
 import { from } from 'rxjs';
 
@@ -6,5 +8,13 @@ import { from } from 'rxjs';
   export class OpenAiService {
     checkOrthography( prompt:string ) {
       return from(orthographyUseCAse(prompt)) ;
+    }
+
+    prosCons( prompt:string ) {
+      return from(prosConsUseCase(prompt)) ;
+    }
+
+    prosConsStream( prompt:string ) {
+      return from(prosConsStreamUseCase(prompt)) ;
     }
  }
