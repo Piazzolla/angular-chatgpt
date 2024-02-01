@@ -1,6 +1,6 @@
 import { environment } from "environments/environment";
 
-export async function* prosConsStreamUseCase(prompt: string) {
+export async function* prosConsStreamUseCase(prompt: string, abortSignal: AbortSignal) {
 
   console.log('prosConsStreamUseCase');
 
@@ -10,7 +10,8 @@ export async function* prosConsStreamUseCase(prompt: string) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({prompt})
+      body: JSON.stringify({prompt}),
+      signal: abortSignal
     });
     if( !resp.ok ) throw new Error('No se pudo realizar la comparacion');
 
