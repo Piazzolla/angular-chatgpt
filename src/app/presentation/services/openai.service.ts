@@ -15,6 +15,6 @@ import { from } from 'rxjs';
     }
 
     prosConsStream( prompt:string ) {
-      return from(prosConsStreamUseCase(prompt)) ;
+      return prosConsStreamUseCase(prompt);
     }
  }

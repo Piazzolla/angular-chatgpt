@@ -1,6 +1,6 @@
 import { environment } from "environments/environment";
 
-export const prosConsStreamUseCase = async (prompt: string) => {
+export async function* prosConsStreamUseCase(prompt: string) {
 
   console.log('prosConsStreamUseCase');
 
@@ -29,11 +29,11 @@ export const prosConsStreamUseCase = async (prompt: string) => {
 
       const decodedChunk = decoder.decode(value, {stream: true});
       text += decodedChunk;
-      console.log(text);
+      yield text;
     }
 
 
-    return null;
+    return text;
 
   } catch (error) {
     return null;
