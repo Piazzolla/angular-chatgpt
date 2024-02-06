@@ -1,7 +1,7 @@
  import { Injectable } from '@angular/core';
 import { prosConsUseCase } from '@use-cases/pros-cons/pros-cons.use-case';
 import { prosConsStreamUseCase } from '@use-cases/pros-cons/pros-cons-stream.use-case';
-import { orthographyUseCAse, textToAudioUseCase } from 'app/core';
+import { audioToTextUseCase, orthographyUseCAse, textToAudioUseCase } from 'app/core';
 import { from } from 'rxjs';
 import { translateUseCase } from '@use-cases/translate/translate.use-case';
 
@@ -26,5 +26,9 @@ import { translateUseCase } from '@use-cases/translate/translate.use-case';
 
     textToAudio( prompt: string, voice: string) {
       return from( textToAudioUseCase( prompt, voice));
+    }
+
+    audioToText( file: File, prompt?: string) {
+      return from( audioToTextUseCase( file, prompt));
     }
  }
