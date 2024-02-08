@@ -1,16 +1,12 @@
 @if( originalImage() ) {
-  <div class="fixed flex flex-col items-center top-10 right-10 z-10 fade-in">
+<div class="fixed flex flex-col items-center top-10 right-10 z-10 fade-in">
   <span>Editando</span>
-  <img [src]="originalImage()"
-    alt="Imagen a editar"
-    class="border rounded-xl w-36 h-36 object-contain" />
-  <button
-    (click)="generateVariation()"
-    class="btn-primary mt-2">Generar variación
+  <img [src]="originalImage()" alt="Imagen a editar" class="border rounded-xl w-36 h-36 object-contain" />
+  <button (click)="generateVariation()" class="btn-primary mt-2">Generar variación
   </button>
 
 
-  </div>
+</div>
 }
 
 <div class="chat-container">
@@ -23,12 +19,15 @@
 
       @for (message of messages(); track $index) {
       @if( message.isGpt ) {
-      <app-chat-message [text]="message.text" [imageInfo]="message.imageInfo" />
+        <app-gpt-message-editable-image
+        [text]="message.text"
+        [imageInfo]="message.imageInfo!"
+        (onSelectedImage)="handleImageChange($event, message.imageInfo!.url)"
+      />
       } @else {
       <app-my-message [text]="message.text" />
       }
       }
-
 
 
 

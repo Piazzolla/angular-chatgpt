@@ -4,23 +4,34 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ChatMessageComponent, MyMessageComponent, TypingLoaderComponent, TextMessageBoxComponent } from '@components/index';
 import { Message } from '@interfaces/message.interface';
 import { OpenAiService } from 'app/presentation/services/openai.service';
+import { GptMessageEditableImageComponent } from "../../components/chat-bubbles/gptMessageEditableImage/gptMessageEditableImage.component";
 
 @Component({
-  selector: 'app-image-generation-page',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    ChatMessageComponent,
-    MyMessageComponent,
-    TypingLoaderComponent,
-    TextMessageBoxComponent
-  ],
-  templateUrl: './imageTunningPage.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-image-generation-page',
+    standalone: true,
+    templateUrl: './imageTunningPage.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        ChatMessageComponent,
+        MyMessageComponent,
+        TypingLoaderComponent,
+        TextMessageBoxComponent,
+        GptMessageEditableImageComponent
+    ]
 })
 export default class ImageTunningPageComponent {
-  public messages = signal<Message[]>([]);
+  public messages = signal<Message[]>([
+    {
+      isGpt: true,
+      text: 'dummy image',
+      imageInfo: {
+        alt: 'dummy image',
+        url: 'http://localhost:3000/gpt/image/1707420083033'
+      }
+    }
+  ]);
   public isLoading = signal(false);
   public openAiService = inject(OpenAiService);
 
@@ -47,6 +58,18 @@ export default class ImageTunningPageComponent {
     })
   }
 
+  handleImageChange(newImage: string, originalImage: string){
+    this.originalImage.set(originalImage);
+    //TODO: mask
+
+    console.log({newImage, originalImage})
+  }
+
+
   generateVariation(){}
 
+
 }
+
+//http://localhost:3000/gpt/image/1707415903714
+
