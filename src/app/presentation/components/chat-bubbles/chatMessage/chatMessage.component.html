@@ -10,12 +10,15 @@
       <markdown>{{ text }}</markdown>
 
       @if (audioUrl) {
-        <audio
-          controls
-          [src]="audioUrl"
-          autoplay
-          class="w-full"
-          ></audio>
+      <audio controls [src]="audioUrl" autoplay class="w-full">
+      </audio>
+      }
+      @if( imageInfo ) {
+      <img
+        [src]="imageInfo.url"
+        [alt]="imageInfo.alt"
+        class="rounded-xl w-96 h96 object-cover" />
+
       }
     </div>
 

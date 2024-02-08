@@ -38,7 +38,8 @@ export default class AudioToTextPageComponent {
     this.isLoading.set(false);
     if( !resp) return;
 
-    const texto = `Transcripcion:
+    const texto = `
+    Transcripcion:
     __Duracion:__ ${ Math.round(resp.duration)} segundos.
 
     ## El texto es:
