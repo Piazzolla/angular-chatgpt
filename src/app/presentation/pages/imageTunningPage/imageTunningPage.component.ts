@@ -23,12 +23,13 @@ import { GptMessageEditableImageComponent } from "../../components/chat-bubbles/
 })
 export default class ImageTunningPageComponent {
   public messages = signal<Message[]>([
+    //para no estar generando todo el tiempo imagenes
     {
       isGpt: true,
       text: 'dummy image',
       imageInfo: {
         alt: 'dummy image',
-        url: 'http://localhost:3000/gpt/image/1707420083033'
+        url: 'http://localhost:3000/gpt/image/1707419659130'
       }
     }
   ]);
