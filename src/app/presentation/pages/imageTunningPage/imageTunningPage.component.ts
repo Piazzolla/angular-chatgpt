@@ -24,6 +24,8 @@ export default class ImageTunningPageComponent {
   public isLoading = signal(false);
   public openAiService = inject(OpenAiService);
 
+  public originalImage = signal<string|undefined>(undefined)
+
   handleMessage(prompt: string) {
 
     this.isLoading.set(true);
@@ -44,5 +46,7 @@ export default class ImageTunningPageComponent {
       ]);
     })
   }
+
+  generateVariation(){}
 
 }
