@@ -8,24 +8,24 @@ interface Image {
 }
 
 export const imageVariationUseCase = async (
-  originalImage: string,
+  baseImage: string,
 ): Promise<GeneratedImage> => {
 
   try {
-
+    console.log(baseImage)
     const resp = await fetch(`${environment.backendApi}/image-variation`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
 
       },
-      body: JSON.stringify({ originalImage })
+      body: JSON.stringify({ baseImage })
 
     });
 
     const { url, revised_prompt: alt } = await resp.json();
 
-    console.log('url: ' + url);
+    //console.log('url: ' + url);
     return { url, alt };
 
   } catch (error) {

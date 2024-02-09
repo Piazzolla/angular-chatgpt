@@ -1,7 +1,7 @@
  import { Injectable } from '@angular/core';
 import { prosConsUseCase } from '@use-cases/pros-cons/pros-cons.use-case';
 import { prosConsStreamUseCase } from '@use-cases/pros-cons/pros-cons-stream.use-case';
-import { audioToTextUseCase, imageGenerationUseCase, orthographyUseCAse, textToAudioUseCase } from 'app/core';
+import { audioToTextUseCase, imageGenerationUseCase, imageVariationUseCase, orthographyUseCAse, textToAudioUseCase } from 'app/core';
 import { from } from 'rxjs';
 import { translateUseCase } from '@use-cases/translate/translate.use-case';
 
@@ -34,5 +34,9 @@ import { translateUseCase } from '@use-cases/translate/translate.use-case';
 
     imageGeneration( prompt: string, originalImage?: string, maskImage?: string) {
       return from( imageGenerationUseCase(prompt, originalImage, maskImage))
+    }
+
+    imageVariation(originalImage: string ) {
+      return from( imageVariationUseCase(originalImage))
     }
   }
