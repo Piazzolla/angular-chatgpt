@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { prosConsUseCase } from '@use-cases/pros-cons/pros-cons.use-case';
 import { prosConsStreamUseCase } from '@use-cases/pros-cons/pros-cons-stream.use-case';
-import { audioToTextUseCase, imageGenerationUseCase, imageVariationUseCase, orthographyUseCAse, textToAudioUseCase } from 'app/core';
+import { audioToTextUseCase, imageGenerationUseCase, imageVariationUseCase, orthographyUseCAse, postQuestionUseCase, textToAudioUseCase } from 'app/core';
 import { Observable, from, of, tap } from 'rxjs';
 import { translateUseCase } from '@use-cases/translate/translate.use-case';
 import { createThreadUseCase } from '../../core/use-cases/assistant/create-thread.use-case';
@@ -53,5 +53,10 @@ export class OpenAiService {
         }));
 
 
+  }
+
+
+  postQuestion( threadId: string, question: string ){
+    return from( postQuestionUseCase(threadId, question));
   }
 }

@@ -36,8 +36,30 @@ export default class AssistantPageComponent implements OnInit {
     console.log('oninit end');
   }
 
-  handleMessage( prompt: string ) {
-    console.log({ prompt })
+  handleMessage( question: string ) {
+    this.isLoading.set(true);
+
+    this.messages.update( prev => [...prev, {text: question, isGpt: false}]);
+
+    this.openAiService.postQuestion( this.threadId()!, question)
+      .subscribe( replies => {
+        this.isLoading.set(false);
+        replies.reverse(); // remove my question from dialog array
+        for( const reply of replies) {
+          for( const message of reply.content) {
+            if(reply.role !== 'assistant') continue;
+            this.messages.update( prev => [
+              ...prev,
+              {
+                text: message,
+                isGpt: reply.role === 'assistant'
+              }
+            ])
+          }
+        }
+      })
+
+
   }
 
 }
